@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 /**
  * Created by himalathacherukuru on 12/3/16.
+ * Kafka Example
  */
 public class KafkaProducer {
   private static Scanner in;
