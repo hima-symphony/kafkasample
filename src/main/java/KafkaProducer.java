@@ -13,7 +13,7 @@ public class KafkaProducer {
   private static Scanner in;
 
   public static void  main(String[] args) {
-    String topicName = "javaworld";
+    String topicName = "testopicforthreebrokers";
 
     //Configure the Producer
     Properties configProperties = new Properties();

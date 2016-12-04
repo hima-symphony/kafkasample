@@ -15,31 +15,37 @@ public class KafkaConsumer {
   private static Scanner scanner;
 
   public static void main(String[] args) throws InterruptedException {
-    String topicName = "javaworld";
+    String topicName = "testopicforthreebrokers";
     String groupId = "group1";
 
     scanner = new Scanner(System.in);
 
-    ConsumerThread consumerThread = new ConsumerThread(topicName, groupId);
-    consumerThread.run();
+    ConsumerThread consumerThreadOne = new ConsumerThread("consumerone", topicName, groupId);
+    ConsumerThread consumerThreadTwo = new ConsumerThread("consumertwo", topicName, groupId);
+    consumerThreadOne.start();
+    consumerThreadTwo.start();
     String message = "";
     while(!message.equals("exit")) {
       message = scanner.nextLine();
     }
 
-    consumerThread.getConsumer().wakeup();
+    consumerThreadOne.getConsumer().wakeup();
+    consumerThreadTwo.getConsumer().wakeup();
     System.out.println("Stopping consumer");
-    consumerThread.join();
+    consumerThreadOne.join();
+    consumerThreadTwo.join();
   }
 
   public static class ConsumerThread extends Thread {
     Consumer consumer;
     String topicName;
     String groupId;
+    String consumerName;
 
-    public ConsumerThread(String topicName, String groupId) {
+    public ConsumerThread(String consumerName, String topicName, String groupId) {
       this.topicName = topicName;
       this.groupId = groupId;
+      this.consumerName = consumerName;
     }
 
     public Consumer getConsumer() {
@@ -47,6 +53,7 @@ public class KafkaConsumer {
     }
 
     public void run() {
+      System.out.println(consumerName);
       Properties properties = new Properties();
       properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
       properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common" +
@@ -63,8 +70,8 @@ public class KafkaConsumer {
         while (true) {
           ConsumerRecords<String, String> records = consumer.poll(100);
           for (ConsumerRecord<String, String> record : records) {
-            System.out.println(record.value());
-            System.out.println(record.key());
+            System.out.printf("consumer: %s, key: %s, value: %s, offset: %d \n", consumerName,
+                record.key(), record.value(), record.offset());
           }
         }
       } catch(WakeupException e) {
