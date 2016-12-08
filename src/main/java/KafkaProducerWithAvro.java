@@ -4,7 +4,8 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
 import java.util.Properties;
-import java.util.concurrent.Future;
+
+import example.avro.User;
 
 /**
  * Created by himalathacherukuru on 12/6/16.
@@ -23,7 +24,6 @@ public class KafkaProducerWithAvro {
         io.confluent.kafka.serializers.KafkaAvroSerializer.class);
     configProperties.put("schema.registry.url", "http://localhost:8081");
 
-
     User user1 = new User();
     user1.setName("Alyssa");
     user1.setFavoriteNumber(256);
@@ -31,32 +31,9 @@ public class KafkaProducerWithAvro {
     Producer<String, GenericRecord> producer = new org.apache.kafka.clients.producer.KafkaProducer
         (configProperties);
     ProducerRecord<String, GenericRecord> rec = new ProducerRecord<String, GenericRecord>(topicName,
-        "1", null);
-    Future resultFuture = producer.send(rec);
+        "1", user1);
+    producer.send(rec);
 
     producer.close();
-  }
-
-  public static class User {
-    public String getName() {
-      return name;
-    }
-
-    public void setName(String name) {
-      this.name = name;
-    }
-
-    public int getFavoriteNumber() {
-      return favoriteNumber;
-    }
-
-    public void setFavoriteNumber(int favoriteNumber) {
-      this.favoriteNumber = favoriteNumber;
-    }
-
-    String name;
-    int favoriteNumber;
-
-
   }
 }
