@@ -9,9 +9,9 @@ import org.apache.avro.specific.SpecificData;
 
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
-public class User extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 834495474358971162L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"User\",\"namespace\":\"example.avro\",\"fields\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"favoriteNumber\",\"type\":[\"int\",\"null\"]},{\"name\":\"address\",\"type\":[\"string\",\"null\"],\"default\":\"null\"}]}");
+public class UserV2 extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
+  private static final long serialVersionUID = -8177136580647595470L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"UserV2\",\"namespace\":\"example.avro\",\"fields\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"favoriteNumber\",\"type\":[\"int\",\"null\"]},{\"name\":\"address\",\"type\":[\"string\",\"null\"]}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
   @Deprecated public java.lang.CharSequence name;
   @Deprecated public java.lang.Integer favoriteNumber;
@@ -22,7 +22,7 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
    * to their default values from the schema.  If that is desired then
    * one should use <code>newBuilder()</code>.
    */
-  public User() {}
+  public UserV2() {}
 
   /**
    * All-args constructor.
@@ -30,7 +30,7 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
    * @param favoriteNumber The new value for favoriteNumber
    * @param address The new value for address
    */
-  public User(java.lang.CharSequence name, java.lang.Integer favoriteNumber, java.lang.CharSequence address) {
+  public UserV2(java.lang.CharSequence name, java.lang.Integer favoriteNumber, java.lang.CharSequence address) {
     this.name = name;
     this.favoriteNumber = favoriteNumber;
     this.address = address;
@@ -107,36 +107,36 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
   }
 
   /**
-   * Creates a new User RecordBuilder.
-   * @return A new User RecordBuilder
+   * Creates a new UserV2 RecordBuilder.
+   * @return A new UserV2 RecordBuilder
    */
-  public static example.avro.User.Builder newBuilder() {
-    return new example.avro.User.Builder();
+  public static example.avro.UserV2.Builder newBuilder() {
+    return new example.avro.UserV2.Builder();
   }
 
   /**
-   * Creates a new User RecordBuilder by copying an existing Builder.
+   * Creates a new UserV2 RecordBuilder by copying an existing Builder.
    * @param other The existing builder to copy.
-   * @return A new User RecordBuilder
+   * @return A new UserV2 RecordBuilder
    */
-  public static example.avro.User.Builder newBuilder(example.avro.User.Builder other) {
-    return new example.avro.User.Builder(other);
+  public static example.avro.UserV2.Builder newBuilder(example.avro.UserV2.Builder other) {
+    return new example.avro.UserV2.Builder(other);
   }
 
   /**
-   * Creates a new User RecordBuilder by copying an existing User instance.
+   * Creates a new UserV2 RecordBuilder by copying an existing UserV2 instance.
    * @param other The existing instance to copy.
-   * @return A new User RecordBuilder
+   * @return A new UserV2 RecordBuilder
    */
-  public static example.avro.User.Builder newBuilder(example.avro.User other) {
-    return new example.avro.User.Builder(other);
+  public static example.avro.UserV2.Builder newBuilder(example.avro.UserV2 other) {
+    return new example.avro.UserV2.Builder(other);
   }
 
   /**
-   * RecordBuilder for User instances.
+   * RecordBuilder for UserV2 instances.
    */
-  public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<User>
-    implements org.apache.avro.data.RecordBuilder<User> {
+  public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<UserV2>
+    implements org.apache.avro.data.RecordBuilder<UserV2> {
 
     private java.lang.CharSequence name;
     private java.lang.Integer favoriteNumber;
@@ -151,7 +151,7 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(example.avro.User.Builder other) {
+    private Builder(example.avro.UserV2.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.name)) {
         this.name = data().deepCopy(fields()[0].schema(), other.name);
@@ -168,10 +168,10 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
     }
 
     /**
-     * Creates a Builder by copying an existing User instance
+     * Creates a Builder by copying an existing UserV2 instance
      * @param other The existing instance to copy.
      */
-    private Builder(example.avro.User other) {
+    private Builder(example.avro.UserV2 other) {
             super(SCHEMA$);
       if (isValidValue(fields()[0], other.name)) {
         this.name = data().deepCopy(fields()[0].schema(), other.name);
@@ -200,7 +200,7 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
       * @param value The value of 'name'.
       * @return This builder.
       */
-    public example.avro.User.Builder setName(java.lang.CharSequence value) {
+    public example.avro.UserV2.Builder setName(java.lang.CharSequence value) {
       validate(fields()[0], value);
       this.name = value;
       fieldSetFlags()[0] = true;
@@ -220,7 +220,7 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
       * Clears the value of the 'name' field.
       * @return This builder.
       */
-    public example.avro.User.Builder clearName() {
+    public example.avro.UserV2.Builder clearName() {
       name = null;
       fieldSetFlags()[0] = false;
       return this;
@@ -239,7 +239,7 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
       * @param value The value of 'favoriteNumber'.
       * @return This builder.
       */
-    public example.avro.User.Builder setFavoriteNumber(java.lang.Integer value) {
+    public example.avro.UserV2.Builder setFavoriteNumber(java.lang.Integer value) {
       validate(fields()[1], value);
       this.favoriteNumber = value;
       fieldSetFlags()[1] = true;
@@ -259,7 +259,7 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
       * Clears the value of the 'favoriteNumber' field.
       * @return This builder.
       */
-    public example.avro.User.Builder clearFavoriteNumber() {
+    public example.avro.UserV2.Builder clearFavoriteNumber() {
       favoriteNumber = null;
       fieldSetFlags()[1] = false;
       return this;
@@ -278,7 +278,7 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
       * @param value The value of 'address'.
       * @return This builder.
       */
-    public example.avro.User.Builder setAddress(java.lang.CharSequence value) {
+    public example.avro.UserV2.Builder setAddress(java.lang.CharSequence value) {
       validate(fields()[2], value);
       this.address = value;
       fieldSetFlags()[2] = true;
@@ -298,16 +298,16 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
       * Clears the value of the 'address' field.
       * @return This builder.
       */
-    public example.avro.User.Builder clearAddress() {
+    public example.avro.UserV2.Builder clearAddress() {
       address = null;
       fieldSetFlags()[2] = false;
       return this;
     }
 
     @Override
-    public User build() {
+    public UserV2 build() {
       try {
-        User record = new User();
+        UserV2 record = new UserV2();
         record.name = fieldSetFlags()[0] ? this.name : (java.lang.CharSequence) defaultValue(fields()[0]);
         record.favoriteNumber = fieldSetFlags()[1] ? this.favoriteNumber : (java.lang.Integer) defaultValue(fields()[1]);
         record.address = fieldSetFlags()[2] ? this.address : (java.lang.CharSequence) defaultValue(fields()[2]);

@@ -32,7 +32,7 @@ public class KafkaProducerWithAvro {
         (configProperties);
     ProducerRecord<String, GenericRecord> rec;
 
-        User user1;
+    User user1;
 
     String message = "";
     while(message!="exit") {

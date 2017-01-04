@@ -7,6 +7,6 @@ public class AvroTest {
   public static void main(String[] args) {
     User user = new User();
     user.setFavoriteNumber(123);
-    user.setName("Himalatha Cherukuru");
+    user.setName("");
   }
 }

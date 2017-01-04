@@ -24,8 +24,9 @@ public class KafkaConsumerWithAvro {
 
     scanner = new Scanner(System.in);
 
-    KafkaConsumer.ConsumerThread consumerThreadOne = new KafkaConsumer.ConsumerThread("consumerone", topicName, groupId);
-    consumerThreadOne.start();
+    ConsumerThread consumerThreadOne =
+        new ConsumerThread("consumerone", topicName, groupId);
+    consumerThreadOne.run();
     String message = "";
     while(!message.equals("exit")) {
       message = scanner.nextLine();
@@ -63,7 +64,6 @@ public class KafkaConsumerWithAvro {
       properties.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
       properties.put(ConsumerConfig.CLIENT_ID_CONFIG, "himatest");
       properties.put("schema.registry.url", "http://localhost:8081");
-      properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "true");
 
       consumer = new org.apache.kafka.clients.consumer.KafkaConsumer(properties);
       consumer.subscribe(Arrays.asList(topicName));
@@ -74,8 +74,12 @@ public class KafkaConsumerWithAvro {
           for (ConsumerRecord<String, GenericRecord> record : records) {
             User user = (User) SpecificData.get().deepCopy(User.SCHEMA$, record.value());
 
-            System.out.printf("consumer: %s, key: %s, value: %s, offset: %d \n", consumerName,
-                record.key(), user, record.offset());
+            System.out.printf("consumer: %s, key: %s, schema: %s, username: %s, " +
+                    "userfavoritenumber: %s, useraddress: %s " +
+                    " offset: %d \n",
+                consumerName,
+                record.key(), user.getSchema(), user.getName(), user.getFavoriteNumber(),
+                user.getAddress(), record.offset());
           }
         }
       } catch(WakeupException e) {
