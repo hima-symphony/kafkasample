@@ -6,7 +6,7 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import java.util.Properties;
 import java.util.Scanner;
 
-import example.avro.User;
+import example.avro.UserV2;
 
 /**
  * Created by himalathacherukuru on 12/6/16.
@@ -15,7 +15,7 @@ public class KafkaProducerWithAvro {
   private static Scanner scanner;
 
   public static void  main(String[] args) {
-    String topicName = "testopicforthreebrokers";
+    String topicName = "testopicforthreebrokers-v1";
     scanner = new Scanner(System.in);
 
     //Configure the Producer
@@ -25,21 +25,24 @@ public class KafkaProducerWithAvro {
         "org.apache.kafka.common.serialization.StringSerializer");
     configProperties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
         io.confluent.kafka.serializers.KafkaAvroSerializer.class);
-    configProperties.put("schema.registry.url", "http://localhost:8081");
+    configProperties.put("schema.registry.url",
+        "http://localhost:8081");
 
 
     Producer<String, GenericRecord> producer = new org.apache.kafka.clients.producer.KafkaProducer
         (configProperties);
     ProducerRecord<String, GenericRecord> rec;
 
-    User user1;
+    UserV2 user1;
 
     String message = "";
     while(message!="exit") {
       message = scanner.nextLine();
-      user1 = new User();
+      user1 = new UserV2();
       user1.setName(message);
       user1.setFavoriteNumber(256);
+      user1.setAddress("sfdsf");
+      user1.setZipcode(234);
 
      rec = new ProducerRecord<String, GenericRecord>(topicName,
           "1", user1);

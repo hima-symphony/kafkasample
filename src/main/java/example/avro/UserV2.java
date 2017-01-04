@@ -10,12 +10,13 @@ import org.apache.avro.specific.SpecificData;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class UserV2 extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -8177136580647595470L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"UserV2\",\"namespace\":\"example.avro\",\"fields\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"favoriteNumber\",\"type\":[\"int\",\"null\"]},{\"name\":\"address\",\"type\":[\"string\",\"null\"]}]}");
+  private static final long serialVersionUID = 5891591082118182257L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"UserV2\",\"namespace\":\"example.avro\",\"fields\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"favoriteNumber\",\"type\":[\"int\",\"null\"]},{\"name\":\"address\",\"type\":[\"string\",\"null\"],\"default\":\"null\"},{\"name\":\"zipcode\",\"type\":[\"int\",\"null\"],\"default\":\"null\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
   @Deprecated public java.lang.CharSequence name;
   @Deprecated public java.lang.Integer favoriteNumber;
   @Deprecated public java.lang.CharSequence address;
+  @Deprecated public java.lang.Integer zipcode;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -29,11 +30,13 @@ public class UserV2 extends org.apache.avro.specific.SpecificRecordBase implemen
    * @param name The new value for name
    * @param favoriteNumber The new value for favoriteNumber
    * @param address The new value for address
+   * @param zipcode The new value for zipcode
    */
-  public UserV2(java.lang.CharSequence name, java.lang.Integer favoriteNumber, java.lang.CharSequence address) {
+  public UserV2(java.lang.CharSequence name, java.lang.Integer favoriteNumber, java.lang.CharSequence address, java.lang.Integer zipcode) {
     this.name = name;
     this.favoriteNumber = favoriteNumber;
     this.address = address;
+    this.zipcode = zipcode;
   }
 
   public org.apache.avro.Schema getSchema() { return SCHEMA$; }
@@ -43,6 +46,7 @@ public class UserV2 extends org.apache.avro.specific.SpecificRecordBase implemen
     case 0: return name;
     case 1: return favoriteNumber;
     case 2: return address;
+    case 3: return zipcode;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -54,6 +58,7 @@ public class UserV2 extends org.apache.avro.specific.SpecificRecordBase implemen
     case 0: name = (java.lang.CharSequence)value$; break;
     case 1: favoriteNumber = (java.lang.Integer)value$; break;
     case 2: address = (java.lang.CharSequence)value$; break;
+    case 3: zipcode = (java.lang.Integer)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -107,6 +112,22 @@ public class UserV2 extends org.apache.avro.specific.SpecificRecordBase implemen
   }
 
   /**
+   * Gets the value of the 'zipcode' field.
+   * @return The value of the 'zipcode' field.
+   */
+  public java.lang.Integer getZipcode() {
+    return zipcode;
+  }
+
+  /**
+   * Sets the value of the 'zipcode' field.
+   * @param value the value to set.
+   */
+  public void setZipcode(java.lang.Integer value) {
+    this.zipcode = value;
+  }
+
+  /**
    * Creates a new UserV2 RecordBuilder.
    * @return A new UserV2 RecordBuilder
    */
@@ -141,6 +162,7 @@ public class UserV2 extends org.apache.avro.specific.SpecificRecordBase implemen
     private java.lang.CharSequence name;
     private java.lang.Integer favoriteNumber;
     private java.lang.CharSequence address;
+    private java.lang.Integer zipcode;
 
     /** Creates a new Builder */
     private Builder() {
@@ -165,6 +187,10 @@ public class UserV2 extends org.apache.avro.specific.SpecificRecordBase implemen
         this.address = data().deepCopy(fields()[2].schema(), other.address);
         fieldSetFlags()[2] = true;
       }
+      if (isValidValue(fields()[3], other.zipcode)) {
+        this.zipcode = data().deepCopy(fields()[3].schema(), other.zipcode);
+        fieldSetFlags()[3] = true;
+      }
     }
 
     /**
@@ -184,6 +210,10 @@ public class UserV2 extends org.apache.avro.specific.SpecificRecordBase implemen
       if (isValidValue(fields()[2], other.address)) {
         this.address = data().deepCopy(fields()[2].schema(), other.address);
         fieldSetFlags()[2] = true;
+      }
+      if (isValidValue(fields()[3], other.zipcode)) {
+        this.zipcode = data().deepCopy(fields()[3].schema(), other.zipcode);
+        fieldSetFlags()[3] = true;
       }
     }
 
@@ -304,6 +334,45 @@ public class UserV2 extends org.apache.avro.specific.SpecificRecordBase implemen
       return this;
     }
 
+    /**
+      * Gets the value of the 'zipcode' field.
+      * @return The value.
+      */
+    public java.lang.Integer getZipcode() {
+      return zipcode;
+    }
+
+    /**
+      * Sets the value of the 'zipcode' field.
+      * @param value The value of 'zipcode'.
+      * @return This builder.
+      */
+    public example.avro.UserV2.Builder setZipcode(java.lang.Integer value) {
+      validate(fields()[3], value);
+      this.zipcode = value;
+      fieldSetFlags()[3] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'zipcode' field has been set.
+      * @return True if the 'zipcode' field has been set, false otherwise.
+      */
+    public boolean hasZipcode() {
+      return fieldSetFlags()[3];
+    }
+
+
+    /**
+      * Clears the value of the 'zipcode' field.
+      * @return This builder.
+      */
+    public example.avro.UserV2.Builder clearZipcode() {
+      zipcode = null;
+      fieldSetFlags()[3] = false;
+      return this;
+    }
+
     @Override
     public UserV2 build() {
       try {
@@ -311,6 +380,7 @@ public class UserV2 extends org.apache.avro.specific.SpecificRecordBase implemen
         record.name = fieldSetFlags()[0] ? this.name : (java.lang.CharSequence) defaultValue(fields()[0]);
         record.favoriteNumber = fieldSetFlags()[1] ? this.favoriteNumber : (java.lang.Integer) defaultValue(fields()[1]);
         record.address = fieldSetFlags()[2] ? this.address : (java.lang.CharSequence) defaultValue(fields()[2]);
+        record.zipcode = fieldSetFlags()[3] ? this.zipcode : (java.lang.Integer) defaultValue(fields()[3]);
         return record;
       } catch (Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);

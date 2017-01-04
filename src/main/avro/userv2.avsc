@@ -5,6 +5,7 @@
 	"fields": [
 		{"name": "name", "type": "string"},
 		{"name": "favoriteNumber", "type": ["int", "null"]},
-		{"name": "address", "type": ["string", "null"]}
+		{"name": "address", "type": ["string", "null"] , "default": "null"},
+		{"name": "zipcode", "type": ["int", "null"], "default": "null"}
 	]
 }

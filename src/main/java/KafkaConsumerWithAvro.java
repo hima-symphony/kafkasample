@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.Properties;
 import java.util.Scanner;
 
-import example.avro.User;
+import example.avro.UserV2;
 
 /**
  * Created by himalathacherukuru on 12/7/16.
@@ -19,7 +19,7 @@ public class KafkaConsumerWithAvro {
   private static Scanner scanner;
 
   public static void main(String[] args) throws InterruptedException {
-    String topicName = "testopicforthreebrokers";
+    String topicName = "testopicforthreebrokers-v1";
     String groupId = "group1";
 
     scanner = new Scanner(System.in);
@@ -72,7 +72,7 @@ public class KafkaConsumerWithAvro {
         while (true) {
           ConsumerRecords<String, GenericRecord> records = consumer.poll(100);
           for (ConsumerRecord<String, GenericRecord> record : records) {
-            User user = (User) SpecificData.get().deepCopy(User.SCHEMA$, record.value());
+            UserV2 user = (UserV2) SpecificData.get().deepCopy(UserV2.SCHEMA$, record.value());
 
             System.out.printf("consumer: %s, key: %s, schema: %s, username: %s, " +
                     "userfavoritenumber: %s, useraddress: %s " +
